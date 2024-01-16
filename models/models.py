@@ -54,5 +54,5 @@ class Log(Base):
 	timestamp: Mapped[datetime.datetime] = mapped_column(TIMESTAMP, nullable=False)
 	action: Mapped[int] = mapped_column(Integer, nullable=False)
 	room: Mapped[int] = mapped_column(ForeignKey("Rooms.id"), nullable=False)
-	user: Mapped[int] = mapped_column(ForeignKey("Users.id"), nullable=False)
+	user: Mapped[int] = mapped_column(ForeignKey("Users.id"), nullable=True)
 	u: Mapped["User"] = relationship(back_populates="logs")
