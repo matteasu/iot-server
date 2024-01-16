@@ -27,10 +27,10 @@ CREATE TABLE "Rooms" (
 
 CREATE TABLE "Logs" (
   "id" integer PRIMARY KEY NOT NULL,
-  "timestamp" timestamp,
-  "action" integer,
-  "room" integer,
-  "user" integer
+  "timestamp" timestamp NOT NULL,
+  "action" integer NOT NULL,
+  "room" integer NOT NULL,
+  "user" intege NOT NULL
 );
 
 ALTER TABLE "Users" ADD FOREIGN KEY ("device_id") REFERENCES "Devices" ("id");
