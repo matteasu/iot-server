@@ -26,11 +26,11 @@ CREATE TABLE "Rooms" (
 );
 
 CREATE TABLE "Logs" (
-  "id" integer PRIMARY KEY NOT NULL,
+  "id" SERIAL PRIMARY KEY NOT NULL ,
   "timestamp" timestamp NOT NULL,
   "action" integer NOT NULL,
   "room" integer NOT NULL,
-  "user" intege NOT NULL
+  "user" integer
 );
 
 ALTER TABLE "Users" ADD FOREIGN KEY ("device_id") REFERENCES "Devices" ("id");

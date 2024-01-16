@@ -2,8 +2,7 @@ from flask import request, Blueprint
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from models.models import User, Device, Room
-import json
-import datetime
+from utils import functions
 
 db_name = 'nenno'
 db_user = 'username'
@@ -27,6 +26,7 @@ def open_door():
 	user = session.query(User).where(User.device_id == device).one()
 	room = session.query(Room).where(Room.id == parsed["room"]).one()
 	if room.kind == user.kind:
+		functions.add_log(session, 0, room.id, user.id)
 		return "user auth"
 	else:
 		return "{} is not authorized to enter {}".format(user.name, room.name)

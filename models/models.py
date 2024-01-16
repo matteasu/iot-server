@@ -50,7 +50,7 @@ class Room(Base):
 
 class Log(Base):
 	__tablename__ = 'Logs'
-	id: Mapped[int] = mapped_column(Integer, primary_key=True, nullable=False)
+	id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True, nullable=False)
 	timestamp: Mapped[datetime.datetime] = mapped_column(TIMESTAMP, nullable=False)
 	action: Mapped[int] = mapped_column(Integer, nullable=False)
 	room: Mapped[int] = mapped_column(ForeignKey("Rooms.id"), nullable=False)
