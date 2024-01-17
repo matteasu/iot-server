@@ -3,14 +3,20 @@ import os
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5
 from routes import api
+
 app = Flask(__name__)
-#app.register_blueprint(api.bp)
+# app.register_blueprint(api.bp)
 bootstrap = Bootstrap5(app)
 
 
 @app.route('/')
 def hello_world():  # put application's code here
 	return render_template('index.html')
+
+
+@app.route('/environments')
+def environments():
+	return render_template('environments.html')
 
 
 if __name__ == '__main__':

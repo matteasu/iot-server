@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <p class="lead text-center">
+                    Click on the environment to view the details
+                </p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <object id="svg-map" data="../static/map-interactive.svg" class="img-fuid"></object>
+            </div>
+        </div>
+        <div class="row">
+            <div class="collapse" id="collapseMH">
+                <div class="card">
+                    <div class="card-header">Room: Main Hall</div>
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="row mb-2 justify-content-between" >
+                                <div class="col">
+                                    <span><i class="bi-shield-lock"></i> Security Level: </span>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-primary">Expand</button>
+                                </div>
+                            </div>
+                            <div class="row mb-2 justify-content-between" >
+                                <div class="col">
+                                    <span><i class="bi-shield-lock"></i> Security Level: </span>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-primary">Expand</button>
+                                </div>
+                            </div>
+                            <div class="row mb-2 justify-content-between" >
+                                <div class="col-9">
+                                    <span><i class="bi-shield-lock"></i> Security Level: </span>
+                                </div>
+                                <div class="col-3 justify-content-end">
+                                    <button class="btn btn-primary">Expand</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+    window.onload = ()=>{
+        const map = document.getElementById("svg-map").contentDocument;
+        const main_hall = map.getElementById("main-hall")
+        const entrance_hall = map.getElementById("entrance-hall")
+        const consulting = map.getElementById("consulting-room")
+        const vault = map.getElementById("vault")
+        const collapse = document.getElementById("collapseMH")
+
+        consulting.addEventListener("click",()=>{new bootstrap.Collapse(collapse)})
+    }
+
+    </script>
+{% endblock %}

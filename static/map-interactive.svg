@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 400 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <rect id="main-hall" serif:id="main hall" x="0" y="0" width="299.524" height="280.587" style="fill:rgb(235,235,235);stroke:black;stroke-width:0.83px;"/>
+    <g transform="matrix(1,0,0,1,18.9871,-4.49945)">
+        <g transform="matrix(12.5,0,0,12.5,156.824,148.69)">
+        </g>
+        <text x="104.724px" y="148.69px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12.5px;">Main Hall</text>
+    </g>
+    <rect id="entrance-hall" serif:id="entrance hall" x="0" y="185.919" width="128.904" height="196.369" style="fill:rgb(235,235,235);stroke:black;stroke-width:0.83px;"/>
+    <g transform="matrix(0.946648,0,0,0.934306,0,-5.83408)">
+        <rect id="consulting-room" x="0" y="6.244" width="186.896" height="89.501" style="fill:rgb(235,235,235);stroke:black;stroke-width:0.89px;"/>
+    </g>
+    <g  transform="matrix(1,0,0,1,-68.3631,-108.039)">
+        <g transform="matrix(12.5,0,0,12.5,200.605,148.69)">
+        </g>
+        <text x="104.724px" y="148.69px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12.5px;">Consulting Room</text>
+    </g>
+    <g id="vault" transform="matrix(1.05564,0,0,1,-17.6549,0)">
+        <rect x="300.462" y="0" width="95.18" height="131.076" style="fill:rgb(235,235,235);stroke:black;stroke-width:0.81px;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,4.02442,6.80632)">
+        <g transform="matrix(12.5,0,0,12.5,355.349,60.8792)">
+        </g>
+        <text x="327.786px" y="60.879px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12.5px;">V<tspan x="335.195px 342.147px " y="60.879px 60.879px ">au</tspan>lt</text>
+    </g>
+    <g transform="matrix(1,0,0,1,-16.4604,4.75926)">
+        <text x="36.361px" y="293.057px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12.5px;">Entrance Hall</text>
+    </g>
+</svg>
