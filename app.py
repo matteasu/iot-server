@@ -4,7 +4,7 @@ from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5
 from routes import api
 app = Flask(__name__)
-app.register_blueprint(api.bp)
+#app.register_blueprint(api.bp)
 bootstrap = Bootstrap5(app)
 
 

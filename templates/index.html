@@ -1,8 +1,21 @@
 {% extends 'base.html' %}
 {% block title %}Home{% endblock %}
 {% block content %}
-    <h2>Welcome to st tropez</h2>
-    {% for u in result %}
-        <h1>{{ u.name }}</h1>
-    {% endfor %}
+    <div class="container">
+    <div class="row">
+        <div class="col">
+            <img src="../static/floor.png" class="img-fluid" alt="floor plan">
+        </div>
+        <div class="col">
+            <h3><i class="bi-people-fill"></i>Total Occupancy</h3>
+            <ul class="list-unstyled">
+                <li class="fs-5">Customers</li>
+                <li class="fs-5">Employees</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row row-cols-6 justify-content-md-center"><button type="button" class="btn btn-primary">Expand</button></div>
+    <div class="row"></div>
+    </div>
+
 {% endblock %}
