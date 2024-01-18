@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block title %}Devices{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <table class="table table-responsive table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Mac Address</th>
+                    <th scope="col">Employee</th>
+                    <th scope="col">Enabled</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td><button class="btn btn-primary"> <i class="bi-pencil"></i> </button></td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="row row-cols-2 justify-content-end">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDevice">+ Add a device</button>
+        </div>
+    </div>
+    <div class="modal fade" id="addDevice" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Add a New Device</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{ render_form(form) }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
