@@ -25,7 +25,7 @@
                                     <span class="fs-5"><i class="bi-shield-lock"></i> Security Level: </span>
                                 </div>
                                 <div class="col-1">
-                                    <button class="btn btn-primary">Expand</button>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#securityMH">Expand</button>
                                 </div>
                             </div>
                             <div class="row mb-4" >
@@ -33,7 +33,7 @@
                                     <span class="fs-5"><i class="bi-people"></i> Number of customers: </span>
                                 </div>
                                 <div class="col-1">
-                                    <button class="btn btn-primary">Expand</button>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#customersMH">Expand</button>
                                 </div>
                             </div>
                             <div class="row mb-4" >
@@ -41,7 +41,7 @@
                                     <span class="fs-5"><i class="bi-person-badge"></i> Number of employees: </span>
                                 </div>
                                 <div class="col-1 ">
-                                    <button class="btn btn-primary">Expand</button>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#employeeMH">Expand</button>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                                     <span class="fs-5"><i class="bi-shield-lock"></i> Security Level: </span>
                                 </div>
                                 <div class="col-1">
-                                    <button class="btn btn-primary">Expand</button>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#securityEH">Expand</button>
                                 </div>
                             </div>
                             <div class="row mb-4" >
@@ -68,7 +68,7 @@
                                     <span class="fs-5"><i class="bi-people"></i> Number of customers: </span>
                                 </div>
                                 <div class="col-1">
-                                    <button class="btn btn-primary">Expand</button>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#customersEH">Expand</button>
                                 </div>
                             </div>
                             <div class="row mb-4" >
@@ -76,7 +76,7 @@
                                     <span class="fs-5"><i class="bi-person-badge"></i> Number of employees: </span>
                                 </div>
                                 <div class="col-1 ">
-                                    <button class="btn btn-primary">Expand</button>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#employeeEH">Expand</button>
                                 </div>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                                     <span class="fs-5"><i class="bi-shield-lock"></i> Security Level: </span>
                                 </div>
                                 <div class="col-1">
-                                    <button class="btn btn-primary">Expand</button>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#securityCR">Expand</button>
                                 </div>
                             </div>
                             <div class="row mb-4" >
@@ -103,12 +103,12 @@
                                     <span class="fs-5"><i class="bi-people"></i> Number of customers: </span>
                                 </div>
                                 <div class="col-1">
-                                    <button class="btn btn-primary">Expand</button>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#customersCR">Expand</button>
                                 </div>
                             </div>
                             <div class="row mb-4" >
                                 <div class="col-11">
-                                    <span class="fs-5"><i class="bi-person-badge"></i> Number of employees: </span>
+                                    <span class="fs-5"><i class="bi-person-badge" data-bs-toggle="modal" data-bs-target="#employeeCR"></i> Number of employees: </span>
                                 </div>
                                 <div class="col-1 ">
                                     <button class="btn btn-primary">Expand</button>
@@ -127,7 +127,7 @@
                         <div class="container">
                             <div class="row mb-4" >
                                 <div class="col-11">
-                                    <span class="fs-5"><i class="bi-shield-lock"></i> Security Level: </span>
+                                    <span class="fs-5"><i class="bi-shield-lock" data-bs-toggle="modal" data-bs-target="#securityV"></i> Security Level: </span>
                                 </div>
                                 <div class="col-1">
                                     <button class="btn btn-primary">Expand</button>
@@ -138,7 +138,7 @@
                                     <span class="fs-5"><i class="bi-people"></i> Number of customers: </span>
                                 </div>
                                 <div class="col-1">
-                                    <button class="btn btn-primary">Expand</button>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#customersV">Expand</button>
                                 </div>
                             </div>
                             <div class="row mb-4" >
@@ -146,7 +146,7 @@
                                     <span class="fs-5"><i class="bi-person-badge"></i> Number of employees: </span>
                                 </div>
                                 <div class="col-1 ">
-                                    <button class="btn btn-primary">Expand</button>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#employeeV">Expand</button>
                                 </div>
                             </div>
                         </div>
@@ -155,6 +155,210 @@
             </div>
         </div>
 
+    </div>
+    <div class="modal fade" id="securityMH" tabindex="-1" aria-labelledby="securityMH" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="customersMH" tabindex="-1" aria-labelledby="customersMH" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="employeeMH" tabindex="-1" aria-labelledby="employeeMH" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="securityEH" tabindex="-1" aria-labelledby="securityEH" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="customersEH" tabindex="-1" aria-labelledby="customersEH" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="employeeEH" tabindex="-1" aria-labelledby="employeeEH" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="securityCR" tabindex="-1" aria-labelledby="securityCR" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="customersCR" tabindex="-1" aria-labelledby="customersCR" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="employeeCR" tabindex="-1" aria-labelledby="employeeCR" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="securityV" tabindex="-1" aria-labelledby="securityV" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="customersV" tabindex="-1" aria-labelledby="customersV" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="employeeV" tabindex="-1" aria-labelledby="employeeV" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
     </div>
     <script>
     window.onload = ()=>{
