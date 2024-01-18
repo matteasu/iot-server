@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Logs {% endblock %}
+{% block content %}
+    <div class="container">
+        <table class="table table-responsive  table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Time</th>
+                <th scope="col">Action</th>
+                <th scope="col">Room</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">{{ t.strftime("%H:%M:%S %d/%m/%y") }}</th>
+                <td>{{ t.strftime("%H:%M:%S %d/%m/%y") }}</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+            <tr class="table-active">
+                <th scope="row" >1</th>
+                <td>{{ t.strftime("%H:%M:%S %d/%m/%y") }}</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

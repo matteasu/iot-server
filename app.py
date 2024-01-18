@@ -1,3 +1,4 @@
+import datetime
 import os
 
 from flask import Flask, render_template
@@ -29,6 +30,12 @@ def devices():
 	form = forms.devices.addDevice(formdata=MultiDict({"mac_address": "ciao", "employee": "1", "enabled": "True"}))
 	form.employee.choices = devices
 	return render_template('devices.html', form=form)
+
+
+@app.route('/logs')
+def logs():
+	t = datetime.datetime.now()
+	return render_template('logs.html',t=t)
 
 
 if __name__ == '__main__':
