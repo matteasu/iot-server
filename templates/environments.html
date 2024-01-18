@@ -17,30 +17,135 @@
         <div class="row">
             <div class="collapse" id="collapseMH">
                 <div class="card">
-                    <div class="card-header">Room: Main Hall</div>
+                    <div class="card-header fs-3">Room: Main Hall</div>
                     <div class="card-body">
                         <div class="container">
-                            <div class="row mb-2 justify-content-between" >
-                                <div class="col">
-                                    <span><i class="bi-shield-lock"></i> Security Level: </span>
+                            <div class="row mb-4" >
+                                <div class="col-11">
+                                    <span class="fs-5"><i class="bi-shield-lock"></i> Security Level: </span>
                                 </div>
-                                <div class="col">
+                                <div class="col-1">
                                     <button class="btn btn-primary">Expand</button>
                                 </div>
                             </div>
-                            <div class="row mb-2 justify-content-between" >
-                                <div class="col">
-                                    <span><i class="bi-shield-lock"></i> Security Level: </span>
+                            <div class="row mb-4" >
+                                <div class="col-11">
+                                    <span class="fs-5"><i class="bi-people"></i> Number of customers: </span>
                                 </div>
-                                <div class="col">
+                                <div class="col-1">
                                     <button class="btn btn-primary">Expand</button>
                                 </div>
                             </div>
-                            <div class="row mb-2 justify-content-between" >
-                                <div class="col-9">
-                                    <span><i class="bi-shield-lock"></i> Security Level: </span>
+                            <div class="row mb-4" >
+                                <div class="col-11">
+                                    <span class="fs-5"><i class="bi-person-badge"></i> Number of employees: </span>
                                 </div>
-                                <div class="col-3 justify-content-end">
+                                <div class="col-1 ">
+                                    <button class="btn btn-primary">Expand</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="collapse" id="collapseEH">
+                <div class="card">
+                    <div class="card-header fs-3">Room: Entrance Hall</div>
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="row mb-4" >
+                                <div class="col-11">
+                                    <span class="fs-5"><i class="bi-shield-lock"></i> Security Level: </span>
+                                </div>
+                                <div class="col-1">
+                                    <button class="btn btn-primary">Expand</button>
+                                </div>
+                            </div>
+                            <div class="row mb-4" >
+                                <div class="col-11">
+                                    <span class="fs-5"><i class="bi-people"></i> Number of customers: </span>
+                                </div>
+                                <div class="col-1">
+                                    <button class="btn btn-primary">Expand</button>
+                                </div>
+                            </div>
+                            <div class="row mb-4" >
+                                <div class="col-11">
+                                    <span class="fs-5"><i class="bi-person-badge"></i> Number of employees: </span>
+                                </div>
+                                <div class="col-1 ">
+                                    <button class="btn btn-primary">Expand</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="collapse" id="collapseCR">
+                <div class="card">
+                    <div class="card-header fs-3">Room: Consulting Room</div>
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="row mb-4" >
+                                <div class="col-11">
+                                    <span class="fs-5"><i class="bi-shield-lock"></i> Security Level: </span>
+                                </div>
+                                <div class="col-1">
+                                    <button class="btn btn-primary">Expand</button>
+                                </div>
+                            </div>
+                            <div class="row mb-4" >
+                                <div class="col-11">
+                                    <span class="fs-5"><i class="bi-people"></i> Number of customers: </span>
+                                </div>
+                                <div class="col-1">
+                                    <button class="btn btn-primary">Expand</button>
+                                </div>
+                            </div>
+                            <div class="row mb-4" >
+                                <div class="col-11">
+                                    <span class="fs-5"><i class="bi-person-badge"></i> Number of employees: </span>
+                                </div>
+                                <div class="col-1 ">
+                                    <button class="btn btn-primary">Expand</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="collapse" id="collapseV">
+                <div class="card">
+                    <div class="card-header fs-3">Room: Vault</div>
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="row mb-4" >
+                                <div class="col-11">
+                                    <span class="fs-5"><i class="bi-shield-lock"></i> Security Level: </span>
+                                </div>
+                                <div class="col-1">
+                                    <button class="btn btn-primary">Expand</button>
+                                </div>
+                            </div>
+                            <div class="row mb-4" >
+                                <div class="col-11">
+                                    <span class="fs-5"><i class="bi-people"></i> Number of customers: </span>
+                                </div>
+                                <div class="col-1">
+                                    <button class="btn btn-primary">Expand</button>
+                                </div>
+                            </div>
+                            <div class="row mb-4" >
+                                <div class="col-11">
+                                    <span class="fs-5"><i class="bi-person-badge"></i> Number of employees: </span>
+                                </div>
+                                <div class="col-1 ">
                                     <button class="btn btn-primary">Expand</button>
                                 </div>
                             </div>
@@ -58,9 +163,41 @@
         const entrance_hall = map.getElementById("entrance-hall")
         const consulting = map.getElementById("consulting-room")
         const vault = map.getElementById("vault")
-        const collapse = document.getElementById("collapseMH")
+        const collapseMH = document.getElementById("collapseMH")
+        const collapseEH = document.getElementById("collapseEH")
+        const collapseCR = document.getElementById("collapseCR")
+        const collapseV = document.getElementById("collapseV")
+        const bCMH=new bootstrap.Collapse(collapseMH,{toggle:false})
+        const bCEH=new bootstrap.Collapse(collapseEH,{toggle:false})
+        const bCCR=new bootstrap.Collapse(collapseCR,{toggle:false})
+        const bCV=new bootstrap.Collapse(collapseV,{toggle:false})
 
-        consulting.addEventListener("click",()=>{new bootstrap.Collapse(collapse)})
+        main_hall.addEventListener("click",()=>{
+            bCEH.hide()
+            bCCR.hide()
+            bCV.hide()
+            bCMH.toggle()
+
+        })
+        entrance_hall.addEventListener("click",()=>{
+            bCMH.hide()
+            bCCR.hide()
+            bCV.hide()
+            bCEH.toggle()
+
+        })
+        consulting.addEventListener("click",()=>{
+            bCMH.hide()
+            bCV.hide()
+            bCEH.hide()
+            bCCR.toggle()
+        })
+        vault.addEventListener("click",()=>{
+            bCMH.hide()
+            bCEH.hide()
+            bCCR.hide()
+            bCV.toggle()
+        })
     }
 
     </script>
