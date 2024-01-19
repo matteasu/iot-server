@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
-{% from 'log_component.html' import log_component %}
-{% from 'log_employees.html' import log_employee %}
+{% from 'components/log_component.html' import log_component %}
+{% from 'components/log_employees.html' import log_employee %}
+{% from 'components/security_component.html' import security_level %}
 {% block title %}Home{% endblock %}
 {% block content %}
     <div class="container">
@@ -27,7 +28,7 @@
                                     <span class="fs-5"><i class="bi-shield-lock"></i> Security Level: </span>
                                 </div>
                                 <div class="col-1">
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#securityMH">Expand</button>
+                                    <button class="btn btn-primary" id="#bSMH" data-bs-target="#securityMH">Expand</button>
                                 </div>
                             </div>
                             <div class="row mb-4" >
@@ -62,7 +63,7 @@
                                     <span class="fs-5"><i class="bi-shield-lock"></i> Security Level: </span>
                                 </div>
                                 <div class="col-1">
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#securityEH">Expand</button>
+                                    <button class="btn btn-primary" id="#bSEH" data-bs-target="#securityEH">Expand</button>
                                 </div>
                             </div>
                             <div class="row mb-4" >
@@ -97,7 +98,7 @@
                                     <span class="fs-5"><i class="bi-shield-lock"></i> Security Level: </span>
                                 </div>
                                 <div class="col-1">
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#securityCR">Expand</button>
+                                    <button class="btn btn-primary" id="#bSCR" data-bs-target="#securityCR">Expand</button>
                                 </div>
                             </div>
                             <div class="row mb-4" >
@@ -129,10 +130,10 @@
                         <div class="container">
                             <div class="row mb-4" >
                                 <div class="col-11">
-                                    <span class="fs-5"><i class="bi-shield-lock" data-bs-toggle="modal" data-bs-target="#securityV"></i> Security Level: </span>
+                                    <span class="fs-5"><i class="bi-shield-lock"></i> Security Level: </span>
                                 </div>
                                 <div class="col-1">
-                                    <button class="btn btn-primary">Expand</button>
+                                    <button class="btn btn-primary" id="#bSV" data-bs-target="#securityV">Expand</button>
                                 </div>
                             </div>
                             <div class="row mb-4" >
@@ -158,80 +159,16 @@
         </div>
 
     </div>
-    <div class="modal fade" id="securityMH" tabindex="-1" aria-labelledby="securityMH" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{ security_level("Main Hall","normal","#securityMH") }}
     {{ log_component("Main Hall","#customersMH",3,logs)}}
     {{ log_employee("Main Hall","#employeeMH",log_e) }}
-    <div class="modal fade" id="securityEH" tabindex="-1" aria-labelledby="securityEH" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{ security_level("Entry Hall","normal","#securityEH") }}
     {{ log_component("Entrance Hall","#customersEH",2,logs)}}
     {{ log_employee("Entrance Hall","#employeeEH",log_e) }}
-    <div class="modal fade" id="securityCR" tabindex="-1" aria-labelledby="securityCR" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{ security_level("Consulting Room","normal","#securityCR") }}
     {{ log_component("Consulting Room","#customersCR",4,logs)}}
     {{ log_employee("Consulting Room","#employeeCR",log_e) }}
-    <div class="modal fade" id="securityV" tabindex="-1" aria-labelledby="securityV" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{ security_level("Vault","privileged","#securityV") }}
     {{ log_component("Vault","#customersV",400,logs)}}
     {{ log_employee("Vault","#employeeV",log_e) }}
     <script>
@@ -250,6 +187,13 @@
         const bCCR=new bootstrap.Collapse(collapseCR,{toggle:false})
         const bCV=new bootstrap.Collapse(collapseV,{toggle:false})
 
+        const sMH= bootstrap.Modal.getOrCreateInstance(document.getElementById('#securityMH'))
+        const bSMH= document.getElementById("#bSMH")
+        bSMH.addEventListener('click',(e)=>{
+            e.preventDefault()
+            sMH.show()
+        })
+
         const lMH= bootstrap.Modal.getOrCreateInstance(document.getElementById('#customersMH'))
         const bLMH= document.getElementById("#bLMH")
         bLMH.addEventListener('click',(e)=>{
@@ -261,6 +205,13 @@
         bEMH.addEventListener('click',(e)=>{
             e.preventDefault()
             eMH.show()
+        })
+
+        const sEH= bootstrap.Modal.getOrCreateInstance(document.getElementById('#securityEH'))
+        const bSEH= document.getElementById("#bSEH")
+        bSEH.addEventListener('click',(e)=>{
+            e.preventDefault()
+            sEH.show()
         })
 
         const lEH= bootstrap.Modal.getOrCreateInstance(document.getElementById('#customersEH'))
@@ -276,6 +227,13 @@
             eEH.show()
         })
 
+        const sCR= bootstrap.Modal.getOrCreateInstance(document.getElementById('#securityCR'))
+        const bSCR= document.getElementById("#bSCR")
+        bSCR.addEventListener('click',(e)=>{
+            e.preventDefault()
+            sCR.show()
+        })
+
         const lCR= bootstrap.Modal.getOrCreateInstance(document.getElementById('#customersCR'))
         const bLCR= document.getElementById("#bLCR")
         bLCR.addEventListener('click',(e)=>{
@@ -288,6 +246,13 @@
         bECR.addEventListener('click',(e)=>{
             e.preventDefault()
             eECR.show()
+        })
+
+        const sV= bootstrap.Modal.getOrCreateInstance(document.getElementById('#securityV'))
+        const bSV= document.getElementById("#bSV")
+        bSV.addEventListener('click',(e)=>{
+            e.preventDefault()
+            sV.show()
         })
 
         const lV= bootstrap.Modal.getOrCreateInstance(document.getElementById('#customersV'))

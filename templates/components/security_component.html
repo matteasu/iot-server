@@ -1,0 +1,24 @@
+{% macro security_level(room,current_security,id) %}
+    <div class="modal fade" id="{{ id }}" tabindex="-1" aria-labelledby="{{ id }}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Security level for {{ room }}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {% if current_security=="normal" %}
+                        <h3>Normal Access</h3>
+                        <span>This room is accessible by every employee of the bank</span>
+                    {% else %}
+                        <h3>Privileged Access</h3>
+                        <span>This room is accessible only by those that are authorized by the site manager</span>
+                    {% endif %}
+                </div>
+                <div class="modal-footer">
+                    <a href="/logs" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">Show details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
