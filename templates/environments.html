@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% from 'log_component.html' import log_component %}
+{% from 'log_employees.html' import log_employee %}
 {% block title %}Home{% endblock %}
 {% block content %}
     <div class="container">
@@ -33,7 +35,7 @@
                                     <span class="fs-5"><i class="bi-people"></i> Number of customers: </span>
                                 </div>
                                 <div class="col-1">
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#customersMH">Expand</button>
+                                    <button class="btn btn-primary" id="#bLMH" data-bs-target="#customersMH">Expand</button>
                                 </div>
                             </div>
                             <div class="row mb-4" >
@@ -41,7 +43,7 @@
                                     <span class="fs-5"><i class="bi-person-badge"></i> Number of employees: </span>
                                 </div>
                                 <div class="col-1 ">
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#employeeMH">Expand</button>
+                                    <button class="btn btn-primary" id="#bEMH" data-bs-target="#employeeMH">Expand</button>
                                 </div>
                             </div>
                         </div>
@@ -68,7 +70,7 @@
                                     <span class="fs-5"><i class="bi-people"></i> Number of customers: </span>
                                 </div>
                                 <div class="col-1">
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#customersEH">Expand</button>
+                                    <button class="btn btn-primary" id="#bLEH" data-bs-target="#customersEH">Expand</button>
                                 </div>
                             </div>
                             <div class="row mb-4" >
@@ -103,7 +105,7 @@
                                     <span class="fs-5"><i class="bi-people"></i> Number of customers: </span>
                                 </div>
                                 <div class="col-1">
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#customersCR">Expand</button>
+                                    <button class="btn btn-primary" id="#bLCR" data-bs-target="#customersCR">Expand</button>
                                 </div>
                             </div>
                             <div class="row mb-4" >
@@ -138,7 +140,7 @@
                                     <span class="fs-5"><i class="bi-people"></i> Number of customers: </span>
                                 </div>
                                 <div class="col-1">
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#customersV">Expand</button>
+                                    <button class="btn btn-primary" id="#bLV" data-bs-target="#customersV">Expand</button>
                                 </div>
                             </div>
                             <div class="row mb-4" >
@@ -173,40 +175,8 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="customersMH" tabindex="-1" aria-labelledby="customersMH" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="employeeMH" tabindex="-1" aria-labelledby="employeeMH" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{ log_component("Main Hall","#customersMH",3,logs)}}
+    {{ log_employee("Main Hall","#employeesMH",log_e) }}
     <div class="modal fade" id="securityEH" tabindex="-1" aria-labelledby="securityEH" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -224,23 +194,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="customersEH" tabindex="-1" aria-labelledby="customersEH" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{ log_component("Entrance Hall","#customersEH",2,logs)}}
     <div class="modal fade" id="employeeEH" tabindex="-1" aria-labelledby="employeeEH" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -275,23 +229,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="customersCR" tabindex="-1" aria-labelledby="customersCR" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{ log_component("Consulting Room","#customersCR",4,logs)}}
     <div class="modal fade" id="employeeCR" tabindex="-1" aria-labelledby="employeeCR" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -326,23 +264,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="customersV" tabindex="-1" aria-labelledby="customersV" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{ log_component("Vault","#customersV",400,logs)}}
     <div class="modal fade" id="employeeV" tabindex="-1" aria-labelledby="employeeV" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -375,6 +297,40 @@
         const bCEH=new bootstrap.Collapse(collapseEH,{toggle:false})
         const bCCR=new bootstrap.Collapse(collapseCR,{toggle:false})
         const bCV=new bootstrap.Collapse(collapseV,{toggle:false})
+
+        const lMH= bootstrap.Modal.getOrCreateInstance(document.getElementById('#customersMH'))
+        const bLMH= document.getElementById("#bLMH")
+        bLMH.addEventListener('click',(e)=>{
+            e.preventDefault()
+            lMH.show()
+        })
+        const eMH= bootstrap.Modal.getOrCreateInstance(document.getElementById('#employeesMH'))
+        const bEMH= document.getElementById("#bEMH")
+        bEMH.addEventListener('click',(e)=>{
+            e.preventDefault()
+            eMH.show()
+        })
+
+        const lEH= bootstrap.Modal.getOrCreateInstance(document.getElementById('#customersEH'))
+        const bLEH= document.getElementById("#bLEH")
+        bLEH.addEventListener('click',(e)=>{
+            e.preventDefault()
+            lEH.show()
+        })
+
+        const lCR= bootstrap.Modal.getOrCreateInstance(document.getElementById('#customersCR'))
+        const bLCR= document.getElementById("#bLCR")
+        bLCR.addEventListener('click',(e)=>{
+            e.preventDefault()
+            lCR.show()
+        })
+
+        const lV= bootstrap.Modal.getOrCreateInstance(document.getElementById('#customersV'))
+        const bLV= document.getElementById("#bLV")
+        bLV.addEventListener('click',(e)=>{
+            e.preventDefault()
+            lV.show()
+        })
 
         main_hall.addEventListener("click",()=>{
             bCEH.hide()

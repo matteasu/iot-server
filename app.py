@@ -21,7 +21,7 @@ def hello_world():  # put application's code here
 
 @app.route('/environments')
 def environments():
-	return render_template('environments.html')
+	return render_template('environments.html', log_e=[{"e": "Matteo", "t": datetime.datetime.now()}], logs=[datetime.datetime.now(), datetime.datetime.now()])
 
 
 @app.route('/devices')
@@ -35,7 +35,7 @@ def devices():
 @app.route('/logs')
 def logs():
 	t = datetime.datetime.now()
-	return render_template('logs.html',t=t)
+	return render_template('logs.html', t=t)
 
 
 if __name__ == '__main__':

@@ -1,0 +1,34 @@
+{% macro log_employee(room,id,logs) %}
+    <div class="modal fade" id="{{ id }}" tabindex="-1" aria-labelledby="{{ id }}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Employees in {{ room }}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-responsive table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th scope="col">Employee</th>
+                            <th scope="col">Entry Time</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for log in logs %}
+                            <tr>
+                                <th scope="row">{{ log["e"] }}</th>
+                                <td>{{ log["t"].strftime("%H:%M:%S") }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <span>Current number of employees: 4</span>
+                </div>
+                <div class="modal-footer">
+                    <a href="/logs" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">Show details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
