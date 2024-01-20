@@ -1,0 +1,8 @@
+{% for log in logs %}
+    <tr>
+        <th scope="row">{{ log.user }}</th>
+        <td>{{ log.time.strftime("%H:%M:%S") }}</td>
+        <td>{{ log.action }}</td>
+        <td>{{ log.room }}</td>
+    </tr>
+{% endfor %}
