@@ -4,7 +4,7 @@ CREATE TYPE "user_kind" AS ENUM (
 );
 
 CREATE TABLE "Users" (
-  "id" integer PRIMARY KEY NOT NULL,
+  "id" SERIAL PRIMARY KEY NOT NULL,
   "name" char(50) NOT NULL,
   "surname" char(50) NOT NULL,
   "kind" user_kind NOT NULL,
@@ -14,13 +14,13 @@ CREATE TABLE "Users" (
 );
 
 CREATE TABLE "Devices" (
-  "id" integer PRIMARY KEY,
+  "id" SERIAL PRIMARY KEY,
   "mac_address" char(17) UNIQUE NOT NULL,
   "enabled" bool DEFAULT false
 );
 
 CREATE TABLE "Rooms" (
-  "id" integer PRIMARY KEY NOT NULL,
+  "id" SERIAL PRIMARY KEY NOT NULL,
   "name" char(50) UNIQUE NOT NULL,
   "kind" user_kind NOT NULL
 );

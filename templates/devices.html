@@ -12,16 +12,19 @@
                     <th scope="col">Mac Address</th>
                     <th scope="col">Employee</th>
                     <th scope="col">Enabled</th>
+                    <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td><button class="btn btn-primary"> <i class="bi-pencil"></i> </button></td>
-                </tr>
+                    {% for d in devices %}
+                        <tr>
+                            <th scope="row">{{ d.id }}</th>
+                            <td>{{ d.mac_address }}</td>
+                            <td>{{ d.employee }}</td>
+                            <td>{{ d.enabled }}</td>
+                            <td><a href="/devices/{{ d.id }}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">Edit Device</a></td>
+                        </tr>
+                    {% endfor %}
 
                 </tbody>
             </table>
@@ -38,7 +41,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    {{ render_form(form) }}
+                    {{ render_form(new_device,action="/api/addDevice") }}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary">Confirm</button>
@@ -46,4 +49,5 @@
             </div>
         </div>
     </div>
+
 {% endblock %}

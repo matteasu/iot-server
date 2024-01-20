@@ -27,7 +27,7 @@ class User(Base):
 	name: Mapped[str] = mapped_column(String(50), nullable=False)
 	surname: Mapped[str] = mapped_column(String(50), nullable=False)
 	kind: Mapped[Kind]
-	device_id: Mapped[int] = mapped_column(ForeignKey("Devices.id"), nullable=False)
+	device_id: Mapped[int] = mapped_column(ForeignKey("Devices.id"), nullable=True)
 	last_location: Mapped[int] = mapped_column(Integer)
 	last_read: Mapped[datetime.datetime] = mapped_column(TIMESTAMP)
 	logs: Mapped[List["Log"]] = relationship(back_populates='u')

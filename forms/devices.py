@@ -8,4 +8,5 @@ from wtforms.validators import DataRequired, Length, InputRequired
 class addDevice(FlaskForm):
 	mac_address = StringField("Mac Address", validators=[DataRequired(), Length(max=17)])
 	employee = SelectField("Employee", coerce=int, validators=[InputRequired()])
-	enabled = BooleanField('Enabled', validators=[DataRequired()])
+	enabled = BooleanField('Enabled')
+	submit = SubmitField('Save')

@@ -3,7 +3,7 @@ import os
 
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5
-from werkzeug.datastructures import MultiDict
+from utils import functions
 import forms.devices
 from routes import api
 
@@ -21,15 +21,21 @@ def hello_world():  # put application's code here
 
 @app.route('/environments')
 def environments():
-	return render_template('environments.html', log_e=[{"e": "Matteo", "t": datetime.datetime.now()}], logs=[datetime.datetime.now(), datetime.datetime.now()])
+	return render_template('environments.html', log_e=[{"e": "Matteo", "t": datetime.datetime.now()}],
+	                       logs=[datetime.datetime.now(), datetime.datetime.now()])
 
 
 @app.route('/devices')
 def devices():
-	devices = [("0", "AAAA"), ("1", "nenno")]
-	form = forms.devices.addDevice(formdata=MultiDict({"mac_address": "ciao", "employee": "1", "enabled": "True"}))
-	form.employee.choices = devices
-	return render_template('devices.html', form=form)
+	form = forms.devices.addDevice()
+	form.employee.choices = functions.employee_choices(api.session)
+	return render_template('devices.html', devices=functions.getDevices(api.session), new_device=form)
+
+
+@app.route('/devices/<int:device_id>')
+def edit_device(device_id):
+	form = functions.getDeviceForm(api.session, device_id)
+	return render_template('edit_device.html', form=form)
 
 
 @app.route('/logs')

@@ -3,7 +3,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from models.models import User, Device, Room, Log
 from utils import functions
-from fastapi.encoders import jsonable_encoder
 
 db_name = 'nenno'
 db_user = 'username'
@@ -42,7 +41,7 @@ def get_logs():
 			user = "customer"
 		else:
 			q = session.query(User.name, User.surname).where(User.id == log.user).one()
-			user = q.name + " "+q.surname
+			user = q.name + " " + q.surname
 		q = session.query(Room).where(Room.id == log.room).one()
 		room = q.name
 		render_log = {
@@ -53,3 +52,21 @@ def get_logs():
 		}
 		render_logs.append(render_log)
 	return render_template("components/log_table.html", logs=render_logs)
+
+
+@bp.route('/getDevices', methods=['GET'])
+def get_devices():
+	devices = session.query(Device).all()
+
+
+@bp.route('/addDevice', methods=['POST'])
+def save_device():
+	if request.form is not None:
+		data = request.form
+	d = Device(mac_address=data['mac_address'], enabled=True if data['enabled'] == "y" else False)
+	session.add(d)
+	employee = session.query(User).where(User.id == data['employee']).one()
+	employee.device_id = d.id
+	session.add(employee)
+	session.commit()
+	return "ok"
