@@ -18,7 +18,6 @@
     </div>
     <script>
     function fetchData(requestURL,table){
-        console.log("fetttt")
         fetch(requestURL)
             .then(response => response.text())
             .then(text => table.innerHTML=text)
