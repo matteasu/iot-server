@@ -11,21 +11,27 @@
                 <th scope="col">Room</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <th scope="row">{{ t.strftime("%H:%M:%S %d/%m/%y") }}</th>
-                <td>{{ t.strftime("%H:%M:%S %d/%m/%y") }}</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr class="table-active">
-                <th scope="row" >1</th>
-                <td>{{ t.strftime("%H:%M:%S %d/%m/%y") }}</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
+            <tbody id="logsTable">
 
             </tbody>
         </table>
     </div>
+    <script>
+    function fetchData(requestURL,table){
+        console.log("fetttt")
+        fetch(requestURL)
+            .then(response => response.text())
+            .then(text => table.innerHTML=text)
+    }
+        window.onload = ()=> {
+            const base_url = {{ url_for("hello_world")|tojson }}
+            console.log(base_url)
+            const requestURL = base_url + "api/getLogs"
+            const table = document.getElementById("logsTable")
+            fetchData(requestURL,table)
+            setInterval(()=>fetchData(requestURL,table),30000)
+
+
+        }
+    </script>
 {% endblock %}

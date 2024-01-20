@@ -1,8 +1,9 @@
-from flask import request, Blueprint
+from flask import request, Blueprint, render_template
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
-from models.models import User, Device, Room
+from models.models import User, Device, Room, Log
 from utils import functions
+from fastapi.encoders import jsonable_encoder
 
 db_name = 'nenno'
 db_user = 'username'
@@ -30,3 +31,25 @@ def open_door():
 		return "user auth"
 	else:
 		return "{} is not authorized to enter {}".format(user.name, room.name)
+
+
+@bp.route('/getLogs', methods=['GET'])
+def get_logs():
+	logs = session.query(Log).all()
+	render_logs = []
+	for log in logs:
+		if log.user is None:
+			user = "customer"
+		else:
+			q = session.query(User.name, User.surname).where(User.id == log.user).one()
+			user = q.name + " "+q.surname
+		q = session.query(Room).where(Room.id == log.room).one()
+		room = q.name
+		render_log = {
+			"user": user,
+			"time": log.timestamp,
+			"room": room,
+			"action": "enter" if log.action == 0 else "leave"
+		}
+		render_logs.append(render_log)
+	return render_template("components/log_table.html", logs=render_logs)

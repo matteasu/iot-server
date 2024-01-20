@@ -1,10 +1,9 @@
 import datetime
 import enum
+from typing import List
 
 from sqlalchemy import Integer, String, Boolean, TIMESTAMP, ForeignKey
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
-
-from typing import List
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship, QueryableAttribute
 
 
 class Base(DeclarativeBase):

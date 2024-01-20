@@ -10,7 +10,7 @@ from routes import api
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
 
-# app.register_blueprint(api.bp)
+app.register_blueprint(api.bp)
 bootstrap = Bootstrap5(app)
 
 
@@ -34,8 +34,7 @@ def devices():
 
 @app.route('/logs')
 def logs():
-	t = datetime.datetime.now()
-	return render_template('logs.html', t=t)
+	return render_template('logs.html')
 
 
 if __name__ == '__main__':
