@@ -4,7 +4,7 @@ import os
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5
 from utils import functions
-import forms.devices
+import forms.forms
 from routes import api
 
 app = Flask(__name__)
@@ -27,15 +27,22 @@ def environments():
 
 @app.route('/devices')
 def devices():
-	form = forms.devices.addDevice()
+	form = forms.forms.addDevice()
 	form.employee.choices = functions.employee_choices(api.session)
 	return render_template('devices.html', devices=functions.getDevices(api.session), new_device=form)
+
+
+@app.route('/employees')
+def employees():
+	return render_template('employees.html', employees=functions.getEmployees(api.session))
 
 
 @app.route('/devices/<int:device_id>')
 def edit_device(device_id):
 	form = functions.getDeviceForm(api.session, device_id)
 	return render_template('edit_device.html', form=form)
+
+
 
 
 @app.route('/logs')

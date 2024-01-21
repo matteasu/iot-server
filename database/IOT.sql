@@ -8,7 +8,7 @@ CREATE TABLE "Users" (
   "name" char(50) NOT NULL,
   "surname" char(50) NOT NULL,
   "kind" user_kind NOT NULL,
-  "device_id" integer,
+  "device_id" integer UNIQUE ,
   "last_location" integer,
   "last_read" timestamp
 );

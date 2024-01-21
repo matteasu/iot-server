@@ -1,7 +1,8 @@
-from flask import request, Blueprint, render_template
+from flask import request, Blueprint, render_template,redirect
 from sqlalchemy import create_engine
+import sqlalchemy.exc
 from sqlalchemy.orm import Session
-from models.models import User, Device, Room, Log
+from models.models import User, Device, Room, Log,Kind
 from utils import functions
 
 db_name = 'nenno'
@@ -54,19 +55,59 @@ def get_logs():
 	return render_template("components/log_table.html", logs=render_logs)
 
 
-@bp.route('/getDevices', methods=['GET'])
-def get_devices():
-	devices = session.query(Device).all()
-
-
 @bp.route('/addDevice', methods=['POST'])
 def save_device():
 	if request.form is not None:
 		data = request.form
-	d = Device(mac_address=data['mac_address'], enabled=True if data['enabled'] == "y" else False)
+	enabled = data.get('enabled', default=False)
+	if enabled == "y":
+		enabled = True
+	d = Device(mac_address=data['mac_address'], enabled=enabled)
 	session.add(d)
-	employee = session.query(User).where(User.id == data['employee']).one()
-	employee.device_id = d.id
-	session.add(employee)
+	if data["employee"] != "-1":
+		employee = session.query(User).where(User.id == data['employee']).one()
+		employee.device_id = d.id
+		session.add(employee)
 	session.commit()
-	return "ok"
+	return redirect('/devices')
+
+
+@bp.route('/editDevice', methods=['POST'])
+def edit_device():
+	if request.form is not None:
+		data = request.form
+	try:
+		old_employee = session.query(User).where(User.device_id == data["device_id"]).one()
+	except sqlalchemy.orm.exc.NoResultFound:
+		old_employee = None
+	device = session.query(Device).where(Device.id == data["device_id"]).one()
+	enabled = data.get('enabled', default=False)
+	if enabled == "y":
+		enabled = True
+	device.enabled = enabled
+	device.mac_address = data['mac_address']
+	if old_employee is not None:
+		if data['employee'] != old_employee.id:
+			old_employee.device_id = None
+			session.add(old_employee)
+	employee = session.query(User).where(User.id == data['employee']).one()
+	employee.device_id = data['device_id']
+	session.add(employee)
+	session.add(device)
+	session.commit()
+	return redirect('/devices')
+
+
+@bp.route('/edit_employees/<int:employee_id>',methods=['POST'])
+def edit_permissions(employee_id):
+	if request.form is not None:
+		data = request.form
+		u = session.query(User).where(User.id == employee_id).one()
+		if data['permission'] == "normal":
+			u.kind = Kind.normal
+		elif data['permission'] == "privileged":
+			u.kind = Kind.privileged
+		session.add(u)
+		session.commit()
+		return redirect("/employees")
+

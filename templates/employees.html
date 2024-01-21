@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form %}
+{% block title %}Employees{% endblock %}
+{% block content %}
+    <div class="container">
+        <table class="table table-responsive align-middle table-striped table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Entry time</th>
+                <th scope="col">Room</th>
+                <th scope="col">Permissions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for e in employees %}
+                <tr>
+                    <th scope="row">{{ e.name }}</th>
+                    <td>
+                        {% if e.time is not none %}
+                            {{e.time.strftime("%H:%M:%S")}}
+                        {% else %}
+                            No Data
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if e.room is not none %}
+                            {{ e.room}}
+                        {% else %}
+                            No Data
+                        {% endif %}
+                    </td>
+                    <td>{{ render_form(e.kind,action="/api/edit_employees/"+e.employee_id,form_type="inline") }}</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
