@@ -1,4 +1,4 @@
-{% macro log_employee(room,id,logs) %}
+{% macro log_employee(room,id) %}
     <div class="modal fade" id="{{ id }}" tabindex="-1" aria-labelledby="{{ id }}" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -15,12 +15,6 @@
                         </tr>
                         </thead>
                         <tbody>
-                        {% for log in logs %}
-                            <tr>
-                                <th scope="row">{{ log["e"] }}</th>
-                                <td>{{ log["t"].strftime("%H:%M:%S") }}</td>
-                            </tr>
-                        {% endfor %}
                         </tbody>
                     </table>
                     <span>Current number of employees: 4</span>

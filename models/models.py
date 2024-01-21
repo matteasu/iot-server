@@ -27,7 +27,7 @@ class User(Base):
 	name: Mapped[str] = mapped_column(String(50), nullable=False)
 	surname: Mapped[str] = mapped_column(String(50), nullable=False)
 	kind: Mapped[Kind]
-	device_id: Mapped[int] = mapped_column(ForeignKey("Devices.id"),unique=True, nullable=True)
+	device_id: Mapped[int] = mapped_column(ForeignKey("Devices.id"), unique=True, nullable=True)
 	last_location: Mapped[int] = mapped_column(Integer)
 	last_read: Mapped[datetime.datetime] = mapped_column(TIMESTAMP)
 	logs: Mapped[List["Log"]] = relationship(back_populates='u')
@@ -55,3 +55,6 @@ class Log(Base):
 	room: Mapped[int] = mapped_column(ForeignKey("Rooms.id"), nullable=False)
 	user: Mapped[int] = mapped_column(ForeignKey("Users.id"), nullable=True)
 	u: Mapped["User"] = relationship(back_populates="logs")
+
+	def __repr__(self):
+		return "{} {} in room {}".format(self.user, "enter" if self.action == 0 else "leave", self.room)

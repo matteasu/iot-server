@@ -21,8 +21,8 @@ def hello_world():  # put application's code here
 
 @app.route('/environments')
 def environments():
-	return render_template('environments.html', log_e=[{"e": "Matteo", "t": datetime.datetime.now()}],
-	                       logs=[datetime.datetime.now(), datetime.datetime.now()])
+	logs = functions.get_logs(api.session)
+	return render_template('environments.html', logs=logs)
 
 
 @app.route('/devices')
@@ -41,8 +41,6 @@ def employees():
 def edit_device(device_id):
 	form = functions.getDeviceForm(api.session, device_id)
 	return render_template('edit_device.html', form=form)
-
-
 
 
 @app.route('/logs')

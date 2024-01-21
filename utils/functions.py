@@ -86,3 +86,14 @@ def getEmployees(session):
 			render_employee["room"] = None
 		render_employees.append(render_employee)
 	return render_employees
+
+
+def get_logs(session):
+	rooms = [(room.name, room.id) for room in session.query(Room).all()]
+	logs = {}
+	employee_logs = {}
+	for room in rooms:
+		_, room_id = room
+		logs[room_id] = {"data": session.query(Log).where(Log.room == room_id).filter(Log.user == None).all()}
+		logs[room_id]["len"] = len(logs[room_id]["data"])
+	return logs

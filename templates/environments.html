@@ -160,17 +160,17 @@
 
     </div>
     {{ security_level("Main Hall","normal","#securityMH") }}
-    {{ log_component("Main Hall","#customersMH",3,logs)}}
-    {{ log_employee("Main Hall","#employeeMH",log_e) }}
+    {{ log_component("Main Hall","#customersMH",logs[1]["len"],logs[1]["data"])}}
+    {{ log_employee("Main Hall","#employeeMH") }}
     {{ security_level("Entry Hall","normal","#securityEH") }}
-    {{ log_component("Entrance Hall","#customersEH",2,logs)}}
-    {{ log_employee("Entrance Hall","#employeeEH",log_e) }}
+    {{ log_component("Entrance Hall","#customersEH",2,logs[1]["data"])}}
+    {{ log_employee("Entrance Hall","#employeeEH") }}
     {{ security_level("Consulting Room","normal","#securityCR") }}
-    {{ log_component("Consulting Room","#customersCR",4,logs)}}
-    {{ log_employee("Consulting Room","#employeeCR",log_e) }}
-    {{ security_level("Vault","privileged","#securityV") }}
-    {{ log_component("Vault","#customersV",400,logs)}}
-    {{ log_employee("Vault","#employeeV",log_e) }}
+    {{ log_component("Consulting Room","#customersCR",4,logs[1]["data"])}}
+    {{ log_employee("Consulting Room","#employeeCR")}}
+    {{ security_level("Vault","privileged","#securityV")}}
+    {{ log_component("Vault","#customersV",400,logs[1]["data"])}}
+    {{ log_employee("Vault","#employeeV")}}
     <script>
     window.onload = ()=>{
         const map = document.getElementById("svg-map").contentDocument;

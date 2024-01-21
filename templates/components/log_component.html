@@ -15,10 +15,11 @@
                     </tr>
                     </thead>
                     <tbody>
+
                     {% for log in room_logs %}
                         <tr>
-                            <th scope="row">{{ log.strftime("%H:%M:%S") }}</th>
-                            <td>{{ log.strftime("%d/%m/%y") }}</td>
+                            <th scope="row">{{ log.timestamp.strftime("%H:%M:%S") }}</th>
+                            <td>{{ log.timestamp.strftime("%d/%m/%y") }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>
