@@ -96,4 +96,14 @@ def get_logs(session):
 		_, room_id = room
 		logs[room_id] = {"data": session.query(Log).where(Log.room == room_id).filter(Log.user == None).all()}
 		logs[room_id]["len"] = len(logs[room_id]["data"])
-	return logs
+		employee_logs[room_id] = {
+			"data": session.query(Log, User).where(Log.room == room_id).filter(Log.user != None).filter(
+				Log.user == User.id).all()}
+		employee_logs[room_id]["len"] = len(employee_logs[room_id]["data"])
+	return logs, employee_logs
+
+
+def get_security_level(session):
+	rooms = session.query(Room).order_by(Room.id).all()
+	rooms = [(room.id, "Normal" if room.kind==Kind.normal else "Privileged") for room in rooms]
+	return rooms

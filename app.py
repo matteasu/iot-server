@@ -21,8 +21,9 @@ def hello_world():  # put application's code here
 
 @app.route('/environments')
 def environments():
-	logs = functions.get_logs(api.session)
-	return render_template('environments.html', logs=logs)
+	logs, employee_logs = functions.get_logs(api.session)
+	security = functions.get_security_level(api.session)
+	return render_template('environments.html',security=security, employee_logs=employee_logs, logs=logs)
 
 
 @app.route('/devices')

@@ -1,8 +1,8 @@
-from flask import request, Blueprint, render_template,redirect
+from flask import request, Blueprint, render_template, redirect
 from sqlalchemy import create_engine
 import sqlalchemy.exc
 from sqlalchemy.orm import Session
-from models.models import User, Device, Room, Log,Kind
+from models.models import User, Device, Room, Log, Kind
 from utils import functions
 
 db_name = 'nenno'
@@ -28,9 +28,9 @@ def open_door():
 	room = session.query(Room).where(Room.id == parsed["room"]).one()
 	if room.kind == user.kind:
 		functions.add_log(session, 0, room.id, user.id)
-		return "user auth"
+		return "Ok", 200
 	else:
-		return "{} is not authorized to enter {}".format(user.name, room.name)
+		return "Not ok", 404
 
 
 @bp.route('/getLogs', methods=['GET'])
@@ -98,7 +98,7 @@ def edit_device():
 	return redirect('/devices')
 
 
-@bp.route('/edit_employees/<int:employee_id>',methods=['POST'])
+@bp.route('/edit_employees/<int:employee_id>', methods=['POST'])
 def edit_permissions(employee_id):
 	if request.form is not None:
 		data = request.form
@@ -110,4 +110,3 @@ def edit_permissions(employee_id):
 		session.add(u)
 		session.commit()
 		return redirect("/employees")
-

@@ -31,7 +31,8 @@ class User(Base):
 	last_location: Mapped[int] = mapped_column(Integer)
 	last_read: Mapped[datetime.datetime] = mapped_column(TIMESTAMP)
 	logs: Mapped[List["Log"]] = relationship(back_populates='u')
-
+	def __repr__(self):
+		return self.name+""+self.surname
 
 class Device(Base):
 	__tablename__ = 'Devices'
