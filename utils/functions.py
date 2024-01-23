@@ -4,7 +4,8 @@ import sqlalchemy.exc
 from werkzeug.datastructures import MultiDict
 import forms.forms
 from models.models import Log, User, Device, Room, Kind
-
+from telegram import Update
+from telegram.ext import ApplicationBuilder,CommandHandler,ContextTypes
 
 def add_log(session, event, room, user=None):
 	l = Log(timestamp=datetime.datetime.now(), action=event, room=room, user=user)
@@ -89,21 +90,34 @@ def getEmployees(session):
 
 
 def get_logs(session):
-	rooms = [(room.name, room.id) for room in session.query(Room).all()]
+	rooms = [(room.name, room.id, room.num_employees, room.num_customers) for room in session.query(Room).all()]
 	logs = {}
 	employee_logs = {}
 	for room in rooms:
-		_, room_id = room
+		_, room_id, num_employees, num_customers = room
 		logs[room_id] = {"data": session.query(Log).where(Log.room == room_id).filter(Log.user == None).all()}
-		logs[room_id]["len"] = len(logs[room_id]["data"])
+		logs[room_id]["len"] = num_customers
 		employee_logs[room_id] = {
 			"data": session.query(Log, User).where(Log.room == room_id).filter(Log.user != None).filter(
 				Log.user == User.id).all()}
-		employee_logs[room_id]["len"] = len(employee_logs[room_id]["data"])
+		employee_logs[room_id]["len"] = num_employees
 	return logs, employee_logs
 
 
 def get_security_level(session):
 	rooms = session.query(Room).order_by(Room.id).all()
-	rooms = [(room.id, "Normal" if room.kind==Kind.normal else "Privileged") for room in rooms]
+	rooms = [(room.id, "Normal" if room.kind == Kind.normal else "Privileged") for room in rooms]
 	return rooms
+
+
+def get_total_count(session):
+	rooms = session.query(Room).order_by(Room.id).all()
+	total_customers = 0
+	total_employees = 0
+	for room in rooms:
+		total_customers += room.num_customers
+		total_employees += room.num_employees
+	return total_employees, total_customers
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+	await context.bot.send_message(chat_id=update.effective_chat.id, text="I'm a bot, please talk to me!")

@@ -2,6 +2,10 @@
 {% block title %}Logs {% endblock %}
 {% block content %}
     <div class="container">
+        <p class="lead text-center">
+            Logs
+        </p>
+        <p class="text-center">Note the logs are updated every 10 seconds</p>
         <table class="table table-responsive  table-bordered">
             <thead>
             <tr>
@@ -23,12 +27,12 @@
             .then(text => table.innerHTML=text)
     }
         window.onload = ()=> {
-            const base_url = {{ url_for("hello_world")|tojson }}
+            const base_url = {{ url_for("home")|tojson }}
             console.log(base_url)
             const requestURL = base_url + "api/getLogs"
             const table = document.getElementById("logsTable")
             fetchData(requestURL,table)
-            setInterval(()=>fetchData(requestURL,table),30000)
+            setInterval(()=>fetchData(requestURL,table),10000)
         }
     </script>
 {% endblock %}

@@ -1,11 +1,12 @@
-import datetime
 import os
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request, Response
 from flask_bootstrap import Bootstrap5
-from utils import functions
+from telegram import Update
+from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
 import forms.forms
 from routes import api
+from utils import functions
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
@@ -14,16 +15,21 @@ app.register_blueprint(api.bp)
 bootstrap = Bootstrap5(app)
 
 
-@app.route('/')
-def hello_world():  # put application's code here
-	return render_template('index.html')
+@app.route('/', methods=['GET', 'POST'])
+def home():  # put application's code here
+	if request.method == 'POST':
+		msg = request.get_json()
+		api.chat_id = msg["message"]["chat"]["id"]
+		return Response('ok', status=200)
+	total_employees, total_customers = functions.get_total_count(api.session)
+	return render_template('index.html', total_employees=total_employees, total_customers=total_customers)
 
 
 @app.route('/environments')
 def environments():
 	logs, employee_logs = functions.get_logs(api.session)
 	security = functions.get_security_level(api.session)
-	return render_template('environments.html',security=security, employee_logs=employee_logs, logs=logs)
+	return render_template('environments.html', security=security, employee_logs=employee_logs, logs=logs)
 
 
 @app.route('/devices')
@@ -51,4 +57,4 @@ def logs():
 
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 5000))
-	app.run(debug=True, host='0.0.0.0', port=port)
+	app.run(debug=True, port=port)

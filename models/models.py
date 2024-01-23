@@ -46,6 +46,8 @@ class Room(Base):
 	id: Mapped[int] = mapped_column(Integer, primary_key=True, nullable=False)
 	name: Mapped[str] = mapped_column(String(50), unique=True, nullable=False)
 	kind: Mapped[Kind]
+	num_employees: Mapped[int] = mapped_column(default=0)
+	num_customers: Mapped[int] = mapped_column(default=0)
 
 
 class Log(Base):

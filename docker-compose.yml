@@ -4,10 +4,6 @@ services:
     ports:
       - "5432:5432"
     build: ./database
-  web:
-    build: .
-    ports:
-      - "5000:80"
   pgadmin:
     container_name: pgadmin4_container
     image: dpage/pgadmin4

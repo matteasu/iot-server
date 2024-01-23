@@ -163,14 +163,14 @@
     {{ log_component("Main Hall","#customersMH",logs[1]["len"],logs[1]["data"])}}
     {{ log_employee("Main Hall","#employeeMH",employee_logs[1]["len"],employee_logs[1]["data"]) }}
     {{ security_level("Entry Hall",security[1].1,"#securityEH") }}
-    {{ log_component("Entrance Hall","#customersEH",2,logs[1]["data"])}}
-    {{ log_employee("Entrance Hall","#employeeEH",employee_logs[1]["len"],employee_logs[1]["data"]) }}
+    {{ log_component("Entrance Hall","#customersEH",logs[2]["len"],logs[2]["data"])}}
+    {{ log_employee("Entrance Hall","#employeeEH",employee_logs[2]["len"],employee_logs[2]["data"]) }}
     {{ security_level("Consulting Room",security[2].1,"#securityCR") }}
-    {{ log_component("Consulting Room","#customersCR",4,logs[1]["data"])}}
-    {{ log_employee("Consulting Room","#employeeCR",employee_logs[1]["len"],employee_logs[1]["data"])}}
+    {{ log_component("Consulting Room","#customersCR",logs[3]["len"],logs[1]["data"])}}
+    {{ log_employee("Consulting Room","#employeeCR",employee_logs[3]["len"],employee_logs[3]["data"])}}
     {{ security_level("Vault",security[3].1,"#securityV")}}
-    {{ log_component("Vault","#customersV",400,logs[1]["data"])}}
-    {{ log_employee("Vault","#employeeV",employee_logs[1]["len"],employee_logs[1]["data"])}}
+    {{ log_component("Vault","#customersV",logs[4]["len"],logs[4]["data"])}}
+    {{ log_employee("Vault","#employeeV",employee_logs[4]["len"],employee_logs[4]["data"])}}
     <script>
     window.onload = ()=>{
         const map = document.getElementById("svg-map").contentDocument;

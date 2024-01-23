@@ -22,7 +22,9 @@ CREATE TABLE "Devices" (
 CREATE TABLE "Rooms" (
   "id" SERIAL PRIMARY KEY NOT NULL,
   "name" char(50) UNIQUE NOT NULL,
-  "kind" user_kind NOT NULL
+  "kind" user_kind NOT NULL,
+  "num_employees" integer DEFAULT 0,
+  "num_customers" integer DEFAULT 0
 );
 
 CREATE TABLE "Logs" (
@@ -40,3 +42,17 @@ ALTER TABLE "Users" ADD FOREIGN KEY ("last_location") REFERENCES "Rooms" ("id");
 ALTER TABLE "Logs" ADD FOREIGN KEY ("room") REFERENCES "Rooms" ("id");
 
 ALTER TABLE "Logs" ADD FOREIGN KEY ("user") REFERENCES "Users" ("id");
+
+INSERT INTO public."Rooms" (id, name, kind)
+VALUES (default, 'Main Hall', 'normal');
+INSERT INTO public."Rooms" (id, name, kind)
+VALUES (default, 'Entrance Hall', 'normal');
+INSERT INTO public."Rooms" (id, name, kind)
+VALUES (default, 'Consulting Room', 'normal');
+INSERT INTO public."Rooms" (id, name, kind)
+VALUES (default, 'Vault', 'privileged');
+INSERT INTO public."Users" (id,name,surname,kind)
+VALUES (default,'Enzo','Rossi','normal');
+INSERT INTO public."Users" (id,name,surname,kind)
+VALUES (default,'Mario','Rossi','privileged')
+

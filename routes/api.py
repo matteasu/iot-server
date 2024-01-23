@@ -1,19 +1,24 @@
-from flask import request, Blueprint, render_template, redirect
+import datetime
+
+from flask import request, Blueprint, render_template, redirect, Response
 from sqlalchemy import create_engine
 import sqlalchemy.exc
 from sqlalchemy.orm import Session
 from models.models import User, Device, Room, Log, Kind
 from utils import functions
+import requests
 
-db_name = 'nenno'
+db_name = 'IOT'
 db_user = 'username'
-db_pass = 'cacca'
-db_host = 'db'
+db_pass = 'password'
+db_host = 'db.iot-server.orb.local'
 db_port = '5432'
 db_string = 'postgresql://{}:{}@{}:{}/{}'.format(db_user, db_pass, db_host, db_port, db_name)
 db = create_engine(db_string)
 session = Session(bind=db)
 bp = Blueprint('api', __name__, url_prefix='/api')
+bot_token = "6672069096:AAFHLrG0SwR67hM9gmp50G9Ol65rY-YcYm0"
+chat_id = 4846560
 
 
 @bp.route('/openDoor', methods=['POST'])
@@ -21,16 +26,46 @@ def open_door():
 	if request.json is not None:
 		parsed = request.get_json()
 	else:
-		return "error"
-	device = session.query(Device).where(Device.mac_address == parsed["device"]).one()
-	device = device.id
-	user = session.query(User).where(User.device_id == device).one()
-	room = session.query(Room).where(Room.id == parsed["room"]).one()
-	if room.kind == user.kind:
-		functions.add_log(session, 0, room.id, user.id)
+		return "error", 400
+	try:
+		device = session.query(Device).where(Device.mac_address == parsed["device"]).one()
+		user = session.query(User).where(User.device_id == device.id).one()
+	except sqlalchemy.exc.NoResultFound:
+		return "Not ok", 400
+
+	try:
+		room = session.query(Room).where(Room.id == parsed["room"]).one()
+	except sqlalchemy.exc.NoResultFound:
+		return "Not ok", 400
+	if room.kind == user.kind and device.enabled:
+		# functions.add_log(session, 0, room.id, user.id)
+		user.last_location = room.id
+		user.last_read = datetime.datetime.now()
+		session.add(user)
+		session.commit()
 		return "Ok", 200
 	else:
-		return "Not ok", 404
+		return "Not ok", 403
+
+
+@bp.route('/addLog', methods=['POST'])
+def add_log():
+	if request.json is not None:
+		parsed = request.get_json()
+	else:
+		return "", 400
+	if parsed["device"] != "customer":
+		try:
+			device = session.query(Device).where(Device.mac_address == parsed["device"]).one()
+			device = device.id
+			user = session.query(User).where(User.device_id == device).one()
+			user = user.id
+		except sqlalchemy.exc.NoResultFound:
+			return "Not ok", 400
+	else:
+		user = None
+	functions.add_log(session, parsed["event"], parsed["room"], user)
+	return "", 200
 
 
 @bp.route('/getLogs', methods=['GET'])
@@ -110,3 +145,31 @@ def edit_permissions(employee_id):
 		session.add(u)
 		session.commit()
 		return redirect("/employees")
+
+
+@bp.route('/sendLog', methods=['POST'])
+def send_log():
+	if request.method == "POST":
+		if request.json is not None:
+			parsed = request.json
+		else:
+			return Response('', status=400)
+		url = f'https://api.telegram.org/bot{bot_token}/sendMessage'  # Calling the telegram API to reply the message
+		try:
+			device = session.query(Device).where(Device.mac_address == parsed["device"]).one()
+			user = session.query(User).where(User.device_id == device.id).one()
+			room = session.query(Room).where(Room.id == parsed["room"]).one()
+		except sqlalchemy.exc.NoResultFound:
+			return Response('', status=400)
+		text = f'{user.name.strip()} {user.surname.strip()} tried to enter {room.name.strip()}'
+		payload = {
+			'chat_id': chat_id,
+			'text': text
+		}
+
+		r = requests.post(url, json=payload)
+
+		if r.status_code == 200:
+			return Response('ok', status=200)
+		else:
+			return Response('Failed to send message to Telegram', status=500)
