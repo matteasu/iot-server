@@ -1,7 +1,7 @@
 import wtforms.validators
 from flask_wtf import FlaskForm
 from wtforms import SubmitField
-from wtforms.fields.simple import StringField, HiddenField
+from wtforms.fields.simple import StringField, HiddenField, PasswordField
 from wtforms.fields import SelectField, BooleanField
 from wtforms.validators import DataRequired, Length, InputRequired
 
@@ -17,3 +17,8 @@ class addDevice(FlaskForm):
 class permissionForm(FlaskForm):
 	permission = SelectField(label=None, choices=[("normal", "Normal"), ("privileged", "Privileged")])
 	submit = SubmitField('Edit Permissions')
+
+class loginForm(FlaskForm):
+	username = StringField("Username", validators=[DataRequired()])
+	password = PasswordField("Password",validators=[DataRequired()])
+	submit = SubmitField('Login')

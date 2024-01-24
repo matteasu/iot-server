@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request, Response
+from flask import Flask, render_template, request, Response, redirect
 from flask_bootstrap import Bootstrap5
 import forms.forms
 from routes import api
@@ -14,6 +14,15 @@ bootstrap = Bootstrap5(app)
 
 
 @app.route('/', methods=['GET', 'POST'])
+def login_page():
+	if request.method == 'POST':
+		return redirect("/home")
+	else:
+		form = forms.forms.loginForm()
+		return render_template('login.html', form=form)
+
+
+@app.route('/home', methods=['GET', 'POST'])
 def home():  # put application's code here
 	if request.method == 'POST':
 		msg = request.get_json()

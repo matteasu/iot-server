@@ -19,6 +19,7 @@ def add_log(session, event, room, user=None):
 			r.num_employees += 1
 		if event == 1:
 			r.num_employees -= 1
+	session.add(r)
 	session.add(l)
 	session.commit()
 
@@ -150,6 +151,8 @@ def check_concurrent_access(session, room_id, user_id):
 	current_datetime = datetime.datetime.now()
 	logs = session.query(Log).where(Log.user == user_id and Log.room == room_id).all()
 	logs = [l for l in logs if l.timestamp.day == current_datetime.day]
+	if len(logs) < 1:
+		return True
 	enter_event = False
 	exit_event = False
 	for l in logs:
