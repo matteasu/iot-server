@@ -9,9 +9,10 @@
 {{ bootstrap.load_css() }}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <body>
-<div class="container">
-{{ render_form(form,action="/")}}
+<div class="container min-vh-100 d-flex justify-content-center align-items-center">
+    {{ render_form(form,action="/")}}
 </div>
+
 {{ bootstrap.load_js() }}
 </body>
 </html>
