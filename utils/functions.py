@@ -144,3 +144,21 @@ def can_enter(room_kind, device_enabled, user_kind):
 			return True
 		else:
 			return False
+
+
+def check_concurrent_access(session, room_id, user_id):
+	current_datetime = datetime.datetime.now()
+	logs = session.query(Log).where(Log.user == user_id and Log.room == room_id).all()
+	logs = [l for l in logs if l.timestamp.day == current_datetime.day]
+	enter_event = False
+	exit_event = False
+	for l in logs:
+		if l.action == 0:
+			enter_event = True
+			exit_event = False
+		else:
+			exit_event = True
+	if enter_event and exit_event:
+		return True
+	else:
+		return False

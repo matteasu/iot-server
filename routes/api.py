@@ -1,6 +1,6 @@
 import datetime
 
-from flask import request, Blueprint, render_template, redirect, Response
+from flask import request, Blueprint, render_template, redirect, Response, url_for
 from sqlalchemy import create_engine
 import sqlalchemy.exc
 from sqlalchemy.orm import Session
@@ -28,23 +28,39 @@ def open_door():
 	else:
 		return "error", 400
 	try:
-		device = session.query(Device).where(Device.mac_address == parsed["device"]).one()
-		user = session.query(User).where(User.device_id == device.id).one()
-	except sqlalchemy.exc.NoResultFound:
-		return "Not ok", 400
-
-	try:
 		room = session.query(Room).where(Room.id == parsed["room"]).one()
 	except sqlalchemy.exc.NoResultFound:
 		return "Not ok", 400
-	if functions.can_enter(room.kind,device.enabled,user.kind):
-		user.last_location = room.id
-		user.last_read = datetime.datetime.now()
-		session.add(user)
-		session.commit()
-		return "Ok", 200
+	if parsed["device"] != "customer":
+		try:
+			device = session.query(Device).where(Device.mac_address == parsed["device"]).one()
+			user = session.query(User).where(User.device_id == device.id).one()
+			if functions.check_concurrent_access(session,room.id, user.id) is False:
+				url = f'https://api.telegram.org/bot{bot_token}/sendMessage'  # Calling the telegram API to reply the message
+				text = f'{user.name.strip()} {user.surname.strip()} tried to enter in two rooms at the same time'
+				payload = {
+					'chat_id': chat_id,
+					'text': text
+				}
+				r = requests.post(url, json=payload)
+				if r.status_code == 200:
+					return Response('ok', status=403)
+			if functions.can_enter(room.kind, device.enabled, user.kind):
+				user.last_location = room.id
+				user.last_read = datetime.datetime.now()
+				session.add(user)
+				session.commit()
+				return "Ok", 200
+			else:
+				return "Not ok", 403
+		except sqlalchemy.exc.NoResultFound:
+			return "Not ok", 400
 	else:
-		return "Not ok", 403
+		user = -1
+		if room.kind == Kind.normal:
+			return "Ok", 200
+		else:
+			return "Not ok", 403
 
 
 @bp.route('/addLog', methods=['POST'])
