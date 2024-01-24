@@ -27,7 +27,7 @@
             .then(text => table.innerHTML=text)
     }
         window.onload = ()=> {
-            const base_url = {{ url_for("home")|tojson }}
+            const base_url = {{ url_for("login_page")|tojson }}
             console.log(base_url)
             const requestURL = base_url + "api/getLogs"
             const table = document.getElementById("logsTable")
