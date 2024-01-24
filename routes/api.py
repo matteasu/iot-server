@@ -37,8 +37,7 @@ def open_door():
 		room = session.query(Room).where(Room.id == parsed["room"]).one()
 	except sqlalchemy.exc.NoResultFound:
 		return "Not ok", 400
-	if room.kind == user.kind and device.enabled:
-		# functions.add_log(session, 0, room.id, user.id)
+	if functions.can_enter(room.kind,device.enabled,user.kind):
 		user.last_location = room.id
 		user.last_read = datetime.datetime.now()
 		session.add(user)
@@ -147,7 +146,7 @@ def edit_permissions(employee_id):
 		return redirect("/employees")
 
 
-@bp.route('/sendLog', methods=['POST'])
+@bp.route('/sendAlert', methods=['POST'])
 def send_log():
 	if request.method == "POST":
 		if request.json is not None:

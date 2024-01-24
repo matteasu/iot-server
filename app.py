@@ -2,8 +2,6 @@ import os
 
 from flask import Flask, render_template, request, Response
 from flask_bootstrap import Bootstrap5
-from telegram import Update
-from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
 import forms.forms
 from routes import api
 from utils import functions

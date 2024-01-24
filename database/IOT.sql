@@ -54,5 +54,12 @@ VALUES (default, 'Vault', 'privileged');
 INSERT INTO public."Users" (id,name,surname,kind)
 VALUES (default,'Enzo','Rossi','normal');
 INSERT INTO public."Users" (id,name,surname,kind)
-VALUES (default,'Mario','Rossi','privileged')
+VALUES (default,'Mario','Rossi','privileged');
+INSERT INTO public."Users" (id,name,surname,kind)
+VALUES (default,'Matteo','Asunis','privileged');
+INSERT INTO public."Devices" (id,mac_address,enabled)
+VALUES(default,'e6:6b:4b:3f:bd:a6',true);
+
+
+
 

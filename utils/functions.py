@@ -4,11 +4,21 @@ import sqlalchemy.exc
 from werkzeug.datastructures import MultiDict
 import forms.forms
 from models.models import Log, User, Device, Room, Kind
-from telegram import Update
-from telegram.ext import ApplicationBuilder,CommandHandler,ContextTypes
+
 
 def add_log(session, event, room, user=None):
 	l = Log(timestamp=datetime.datetime.now(), action=event, room=room, user=user)
+	r = session.query(Room).where(Room.id == room).one()
+	if user is None:
+		if event == 0:  # enter a room
+			r.num_customers += 1
+		if event == 1:
+			r.num_customers -= 1
+	else:
+		if event == 0:  # enter a room
+			r.num_employees += 1
+		if event == 1:
+			r.num_employees -= 1
 	session.add(l)
 	session.commit()
 
@@ -119,5 +129,18 @@ def get_total_count(session):
 		total_employees += room.num_employees
 	return total_employees, total_customers
 
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-	await context.bot.send_message(chat_id=update.effective_chat.id, text="I'm a bot, please talk to me!")
+
+def can_enter(room_kind, device_enabled, user_kind):
+	if room_kind == Kind.normal:
+		if user_kind == Kind.normal or user_kind == Kind.privileged:
+			if device_enabled:
+				return True
+			else:
+				return False
+		else:
+			return False
+	elif room_kind == Kind.privileged:
+		if user_kind == Kind.privileged and device_enabled:
+			return True
+		else:
+			return False
