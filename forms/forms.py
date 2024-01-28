@@ -18,7 +18,8 @@ class permissionForm(FlaskForm):
 	permission = SelectField(label=None, choices=[("normal", "Normal"), ("privileged", "Privileged")])
 	submit = SubmitField('Edit Permissions')
 
+
 class loginForm(FlaskForm):
 	username = StringField("Username", validators=[DataRequired()])
-	password = PasswordField("Password",validators=[DataRequired()])
+	password = PasswordField("Password", validators=[DataRequired()])
 	submit = SubmitField('Login')

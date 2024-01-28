@@ -9,16 +9,16 @@ from utils import functions
 import requests
 
 db_name = 'IOT'
-db_user = 'username'
-db_pass = 'password'
+db_user = ''
+db_pass = ''
 db_host = 'db.iot-server.orb.local'
 db_port = '5432'
 db_string = 'postgresql://{}:{}@{}:{}/{}'.format(db_user, db_pass, db_host, db_port, db_name)
 db = create_engine(db_string)
 session = Session(bind=db)
 bp = Blueprint('api', __name__, url_prefix='/api')
-bot_token = "6672069096:AAFHLrG0SwR67hM9gmp50G9Ol65rY-YcYm0"
-chat_id = 4846560
+bot_token = ""
+chat_id = 0
 
 
 @bp.route('/openDoor', methods=['POST'])
@@ -35,7 +35,7 @@ def open_door():
 		try:
 			device = session.query(Device).where(Device.mac_address == parsed["device"]).one()
 			user = session.query(User).where(User.device_id == device.id).one()
-			if functions.check_concurrent_access(session,room.id, user.id) is False:
+			if functions.check_concurrent_access(session, room.id, user.id) is False:
 				url = f'https://api.telegram.org/bot{bot_token}/sendMessage'  # Calling the telegram API to reply the message
 				text = f'{user.name.strip()} {user.surname.strip()} tried to enter in two rooms at the same time'
 				payload = {
@@ -170,13 +170,20 @@ def send_log():
 		else:
 			return Response('', status=400)
 		url = f'https://api.telegram.org/bot{bot_token}/sendMessage'  # Calling the telegram API to reply the message
-		try:
-			device = session.query(Device).where(Device.mac_address == parsed["device"]).one()
-			user = session.query(User).where(User.device_id == device.id).one()
-			room = session.query(Room).where(Room.id == parsed["room"]).one()
-		except sqlalchemy.exc.NoResultFound:
-			return Response('', status=400)
-		text = f'{user.name.strip()} {user.surname.strip()} tried to enter {room.name.strip()}'
+		if parsed["device"] == "customer":
+			name = "customer"
+			surname = ""
+		else:
+			try:
+				device = session.query(Device).where(Device.mac_address == parsed["device"]).one()
+				user = session.query(User).where(User.device_id == device.id).one()
+				name = user.name
+				surname = user.surname
+			except sqlalchemy.exc.NoResultFound:
+				return Response('', status=400)
+		room = session.query(Room).where(Room.id == parsed["room"]).one()
+
+		text = f'{name.strip()} {surname.strip()} tried to enter {room.name.strip()}'
 		payload = {
 			'chat_id': chat_id,
 			'text': text
